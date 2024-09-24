@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Item Creator</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Magic Item Creator</h1>
+        <form id="magicItemForm">
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" placeholder="Enter a name for the item" required>
+
+            <label for="itemType">Item Type:</label>
+            <select id="itemType" onchange="updateItemOptions()">
+                <option value="">-- Select Item Type --</option>
+                <option value="weapon">Weapon</option>
+                <option value="armor">Armor</option>
+                <option value="misc">Misc</option>
+            </select>
+
+            <div id="weaponTypeContainer" style="display:none;">
+                <label for="weaponType">Weapon Type:</label>
+                <select id="weaponType">
+                    <option value="axe">Axe</option>
+                    <option value="club">Club</option>
+                    <option value="short-sword">Short Sword</option>
+                    <option value="staff">Staff</option>
+                    <option value="long-sword">Long Sword</option>
+                    <option value="bow">Bow</option>
+                </select>
+            </div>
+
+            <div id="armorOptionsContainer" style="display:none;">
+                <label for="armorType">Armor Part:</label>
+                <select id="armorType">
+                    <option value="helmet">Helmet</option>
+                    <option value="boots">Boots</option>
+                    <option value="shield">Shield</option>
+                    <option value="gloves">Gloves</option>
+                    <option value="robe">Robe</option>
+                    <option value="chest-plate">Chest Plate</option>
+                </select>
+
+                <label for="armorStyle">Armor Style:</label>
+                <select id="armorStyle">
+                    <option value="plate">Plate</option>
+                    <option value="leather">Leather</option>
+                    <option value="banded">Banded</option>
+                    <option value="chainmail">Chainmail</option>
+                    <option value="cloth">Cloth</option>
+                </select>
+            </div>
+
+            
+
+            <!-- Grouping the Weapon Bonus, Magical Effect, Secondary Effect -->
+            <label for="weaponBonus">Weapon Bonus:</label>
+            <input type="checkbox" id="weaponBonusToggle" onclick="toggleWeaponBonus()">
+            <select id="weaponBonus" disabled>
+                <option value="+1">+1</option>
+                <option value="+2">+2</option>
+                <option value="+3">+3</option>
+                <option value="+4">+4</option>
+                <option value="+5">+5</option>
+            </select>
+
+            <label for="magicalEffect">Magical Effect:</label>
+            <input type="checkbox" id="magicalEffectToggle" onclick="toggleMagicalEffect()">
+            <select id="magicalEffect" disabled>
+                <option value="fire">Fire</option>
+                <option value="ice">Ice</option>
+                <option value="necrotic">Necrotic</option>
+                <option value="disguise">Disguise</option>
+                <option value="shield">Shield</option>
+                <option value="poison">Poison</option>
+                <option value="stun">Stun</option>
+            </select>
+
+            <label for="secondaryEffect">Secondary Effect:</label>
+            <input type="checkbox" id="secondaryEffectToggle" onclick="toggleSecondaryEffect()">
+            <select id="secondaryEffect" disabled>
+                <option value="fire">Fire</option>
+                <option value="ice">Ice</option>
+                <option value="necrotic">Necrotic</option>
+                <option value="poison">Poison</option>
+                <option value="stun">Stun</option>
+                <option value="light">Light</option>
+            </select>
+
+            <div class="button-group">
+                <button type="button" onclick="createMagicItem()">Create Magic Item</button>
+                <button type="button" onclick="createRandomItem()">Create Random Item</button>
+            </div>
+        </form>
+
+        <div id="output"></div>
+
+        <div id="notesSection" style="display:none;">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" placeholder="Add any notes or additional details here"></textarea>
+        </div>
+
+        <div id="saveSection" style="display:none;">
+            <button onclick="saveToDoc()">Save as .doc</button>
+            <button onclick="saveToPdf()">Save as .pdf</button>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+
+
+
+

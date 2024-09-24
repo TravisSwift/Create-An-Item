@@ -1,0 +1,112 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container for centering the form */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Labels for form fields */
+label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+
+/* Input, select, and textarea fields */
+input[type="text"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Textarea styling */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 300px;
+}
+
+/* Buttons styling */
+button {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Flexbox layout for buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+button + button {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Output section styling */
+#output {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+/* Notes section (displayed after item creation) */
+#notesSection {
+    margin-top: 20px;
+}
+
+/* Save section for doc/pdf buttons */
+#saveSection {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+
+
+
