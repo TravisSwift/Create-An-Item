@@ -1,18 +1,27 @@
-// Function to show/hide relevant options for weapons and armor
+// Function to show/hide relevant options for weapons, armor, and misc items
 function updateItemOptions() {
     const itemType = document.getElementById("itemType").value;
     const weaponTypeContainer = document.getElementById("weaponTypeContainer");
     const armorOptionsContainer = document.getElementById("armorOptionsContainer");
+    const miscOptionsContainer = document.getElementById("miscOptionsContainer");
 
+    // Show or hide specific dropdowns based on selected item type
     if (itemType === "weapon") {
         weaponTypeContainer.style.display = "block";
         armorOptionsContainer.style.display = "none";
+        miscOptionsContainer.style.display = "none";
     } else if (itemType === "armor") {
         weaponTypeContainer.style.display = "none";
         armorOptionsContainer.style.display = "block";
+        miscOptionsContainer.style.display = "none";
+    } else if (itemType === "misc") {
+        weaponTypeContainer.style.display = "none";
+        armorOptionsContainer.style.display = "none";
+        miscOptionsContainer.style.display = "block";
     } else {
         weaponTypeContainer.style.display = "none";
         armorOptionsContainer.style.display = "none";
+        miscOptionsContainer.style.display = "none";
     }
 }
 
@@ -50,6 +59,9 @@ function createMagicItem() {
         const armorType = document.getElementById("armorType").value;
         const armorStyle = document.getElementById("armorStyle").value;
         itemDetails = `Armor: ${armorType} (${armorStyle})`;
+    } else if (itemType === "misc") {
+        const miscType = document.getElementById("miscType").value;
+        itemDetails = `Misc: ${miscType}`;
     }
 
     const weaponBonusToggle = document.getElementById("weaponBonusToggle").checked;
@@ -70,36 +82,44 @@ function createMagicItem() {
     document.getElementById("saveSection").style.display = "block";
 }
 
-// Function to create a random item and display the result
+// Function to create a random item
 function createRandomItem() {
     const randomNames = ["Mystic", "Shadow", "Flame", "Frost", "Thunder", "Vortex", "Blood", "Spirit", "Void"];
-    const randomItemTypes = ["weapon", "armor"];
-    const randomWeapons = ["axe", "club", "short-sword", "staff", "long-sword", "bow"];
-    const randomArmors = ["helmet", "boots", "shield", "gloves", "robe", "chest-plate"];
-    const randomArmorStyles = ["plate", "leather", "banded", "chainmail", "cloth"];
-    const randomBonuses = ["+1", "+2", "+3", "+4", "+5"];
-    const randomEffects = ["fire", "ice", "necrotic", "disguise", "shield", "poison", "stun"];
-    const randomSecondaryEffects = ["fire", "ice", "necrotic", "poison", "stun", "light"];
+    const itemTypes = ["weapon", "armor", "misc"];
+    
+    // Arrays for options
+    const weaponTypes = ["axe", "club", "short-sword", "long-sword", "staff", "bow", "dagger", "scimitar"];
+    const armorTypes = ["helmet", "boots", "shield", "gloves", "chest-plate", "robe"];
+    const armorStyles = ["plate", "leather", "chainmail", "cloth", "banded"];
+    const miscTypes = ["bean-burrito", "meal", "drink", "book", "ring", "necklace", "door-knob"];
+    const bonuses = ["+1", "+2", "+3", "+4", "+5"];
+    const magicalEffects = ["fire", "ice", "necrotic", "disguise", "shield", "poison", "stun"];
+    const secondaryEffects = ["fire", "ice", "necrotic", "poison", "stun", "light"];
 
-    // Randomize item name, item type, weapon/armor, bonuses, and effects
+    // Randomly select name and item type
     const randomName = randomNames[Math.floor(Math.random() * randomNames.length)] + " " + randomNames[Math.floor(Math.random() * randomNames.length)];
-    const randomItemType = randomItemTypes[Math.floor(Math.random() * randomItemTypes.length)];
+    const randomItemType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
+    
     let itemDetails = '';
 
     if (randomItemType === "weapon") {
-        const randomWeapon = randomWeapons[Math.floor(Math.random() * randomWeapons.length)];
-        itemDetails = `Weapon: ${randomWeapon}`;
+        const randomWeaponType = weaponTypes[Math.floor(Math.random() * weaponTypes.length)];
+        itemDetails = `Weapon: ${randomWeaponType}`;
     } else if (randomItemType === "armor") {
-        const randomArmor = randomArmors[Math.floor(Math.random() * randomArmors.length)];
-        const randomArmorStyle = randomArmorStyles[Math.floor(Math.random() * randomArmorStyles.length)];
-        itemDetails = `Armor: ${randomArmor} (${randomArmorStyle})`;
+        const randomArmorType = armorTypes[Math.floor(Math.random() * armorTypes.length)];
+        const randomArmorStyle = armorStyles[Math.floor(Math.random() * armorStyles.length)];
+        itemDetails = `Armor: ${randomArmorType} (${randomArmorStyle})`;
+    } else if (randomItemType === "misc") {
+        const randomMiscType = miscTypes[Math.floor(Math.random() * miscTypes.length)];
+        itemDetails = `Misc: ${randomMiscType}`;
     }
 
-    const randomBonus = randomBonuses[Math.floor(Math.random() * randomBonuses.length)];
-    const randomEffect = randomEffects[Math.floor(Math.random() * randomEffects.length)];
-    const randomSecondaryEffect = randomSecondaryEffects[Math.floor(Math.random() * randomSecondaryEffects.length)];
+    // Randomly select bonuses and effects
+    const randomBonus = bonuses[Math.floor(Math.random() * bonuses.length)];
+    const randomMagicalEffect = magicalEffects[Math.floor(Math.random() * magicalEffects.length)];
+    const randomSecondaryEffect = secondaryEffects[Math.floor(Math.random() * secondaryEffects.length)];
 
-    let result = `Item Name: ${randomName}\n${itemDetails} with ${randomBonus} weapon bonus, ${randomEffect} magical effect, and ${randomSecondaryEffect} secondary effect.`;
+    let result = `Item Name: ${randomName}\n${itemDetails} with ${randomBonus} weapon bonus, ${randomMagicalEffect} magical effect, and ${randomSecondaryEffect} secondary effect.`;
 
     document.getElementById("output").innerText = result;
 
@@ -108,32 +128,3 @@ function createRandomItem() {
     document.getElementById("saveSection").style.display = "block";
 }
 
-// Function to save the result as a .doc file
-function saveToDoc() {
-    const itemName = document.getElementById("itemName").value || "Magic Item";
-    const result = document.getElementById("output").innerText;
-    const notes = document.getElementById("notes").value;
-    
-    const content = result + "\n\nNotes:\n" + notes;
-
-    const blob = new Blob([content], { type: "application/msword" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${itemName}.doc`;
-    link.click();
-}
-
-// Function to save the result as a .pdf file
-function saveToPdf() {
-    const itemName = document.getElementById("itemName").value || "Magic Item";
-    const result = document.getElementById("output").innerText;
-    const notes = document.getElementById("notes").value;
-
-    const content = result + "\n\nNotes:\n" + notes;
-
-    const pdfWindow = window.open("");
-    pdfWindow.document.write(`<pre>${content}</pre>`);
-    pdfWindow.document.close();
-    pdfWindow.print();
-}
-    

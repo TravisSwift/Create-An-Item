@@ -50,7 +50,6 @@ textarea {
 /* Buttons styling */
 button {
     padding: 10px;
-    margin-top: 20px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -68,12 +67,11 @@ button:hover {
 .button-group {
     display: flex;
     gap: 10px;
-    justify-content: space-between;
 }
 
-button + button {
-    margin-left: 0;
-    width: 100%;
+.button-group button {
+    flex: 1; /* Ensures both buttons take up equal space */
+    text-align: center;
 }
 
 /* Output section styling */
@@ -106,6 +104,7 @@ button + button {
         width: 100%;
     }
 }
+
 
 
 
