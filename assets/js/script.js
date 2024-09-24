@@ -128,3 +128,36 @@ function createRandomItem() {
     document.getElementById("saveSection").style.display = "block";
 }
 
+// Function to create and download a .doc file
+function saveToDoc() {
+    const itemName = document.getElementById("itemName").value || "Magic Item";
+    const result = document.getElementById("output").innerText;
+    const notes = document.getElementById("notes").value;
+
+    // Combine the result with the notes
+    const content = result + "\n\nNotes:\n" + notes;
+
+    // Create a Blob with the content
+    const blob = new Blob([content], { type: "application/msword" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${itemName}.doc`;
+    link.click();
+}
+
+// Function to create and download a .pdf file (Using print to PDF workaround)
+function saveToPdf() {
+    const itemName = document.getElementById("itemName").value || "Magic Item";
+    const result = document.getElementById("output").innerText;
+    const notes = document.getElementById("notes").value;
+
+    // Combine the result with the notes
+    const content = result + "\n\nNotes:\n" + notes;
+
+    // Open the content in a new window for the print-to-pdf option
+    const pdfWindow = window.open("", "_blank");
+    pdfWindow.document.write(`<pre>${content}</pre>`);
+    pdfWindow.document.close(); // Ensure content is fully loaded
+    pdfWindow.print(); // Trigger print-to-pdf
+}
+
