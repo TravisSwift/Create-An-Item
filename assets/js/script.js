@@ -84,7 +84,13 @@ function createMagicItem() {
 
 // Function to create a random item
 function createRandomItem() {
-    const randomNames = ["Mystic", "Shadow", "Flame", "Frost", "Thunder", "Vortex", "Blood", "Spirit", "Void"];
+    const randomNames = ["Specter", "Blaze", "Phantom", "Echo", "Venom", "Nebula", "Doom", "Obsidian", 
+        "Storm", "Rune", "Skull", "Inferno", "Wraith", "Arcane", "Midnight", "Havoc", "Ember", "Chaos", 
+        "Tempest", "Grim", "Celestial", "Hex", "Abyss", "Raven", "Void", "Omen", "Serpent", "Scorch", 
+        "Ghoul", "Eclipse", "Spirit", "Fury", "Frostbite", "Draco", "Cinder", "Viper", "Moonshadow", 
+        "Dread", "Ritual", "Gloom", "Blight", "Curse", "Whisper", "Torment", "Soulreaper", "Ashen", 
+        "Nightfall", "Maelstrom", "Shiver", "Dusk"];
+        
     const itemTypes = ["weapon", "armor", "misc"];
     
     // Arrays for options
